@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/c3k4ah/donebot/internal/notifier"
 	"github.com/c3k4ah/donebot/internal/runner"
@@ -32,12 +33,17 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Load .env (optional, doesn't fail if file is missing)
-	_ = godotenv.Load()
+	// Load .env from executable directory first, then from CWD
+	if exePath, err := os.Executable(); err == nil {
+		exeDir := filepath.Dir(exePath)
+		_ = godotenv.Load(filepath.Join(exeDir, ".env"))
+	}
+	_ = godotenv.Load() // Fallback to current working directory if available
 
 	// Execution
 	commandName := args[0]
 	commandArgs := args[1:]
+
 
 	err := runner.RunCommand(commandName, commandArgs...)
 	if err != nil {

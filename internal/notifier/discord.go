@@ -9,9 +9,9 @@ import (
 
 // SendDiscordNotification sends a notification to a Discord webhook.
 func SendDiscordNotification(webhookURL string, cmd string, success bool) error {
-	status := "✅ Success"
+	status := "Success"
 	if !success {
-		status = "❌ Failed"
+		status = "Failed"
 	}
 	message := fmt.Sprintf("Command `%s` finished with status: %s", cmd, status)
 

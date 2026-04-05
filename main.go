@@ -21,7 +21,7 @@ func main() {
 
 	// Flags definition
 	discordFlag := flag.Bool("dis", false, "Send a Discord notification once command finishes")
-	
+
 	// Parse flags
 	flag.Parse()
 
@@ -38,7 +38,7 @@ func main() {
 	// Execution
 	commandName := args[0]
 	commandArgs := args[1:]
-	
+
 	err := runner.RunCommand(commandName, commandArgs...)
 	if err != nil {
 		log.Printf("Execution error: %v", err)

@@ -1,0 +1,14 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+donebot
+
+# Environment
+.env
+
+# Go dependencies
+vendor/
+go.sum
